@@ -92,7 +92,7 @@ var portfolioModal = function (modalClick) {
 
 // Function to handle both click and touchstart events
 var addEventListeners = function(element, callback) {
-    element.addEventListener("click", callback);
+    //element.addEventListener("click", callback);
     element.addEventListener("touchstart", callback);
 };
 
