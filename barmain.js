@@ -91,19 +91,24 @@ var portfolioModal = function (modalClick) {
 }
 
 imgCards.forEach((imgCard, i) => {
-    imgCard.addEventListener("click", () => {
-        portfolioModal(i);
+    // Add both click and touchstart event listeners
+    ["click", "touchstart"].forEach(event => {
+        imgCard.addEventListener(event, () => {
+            portfolioModal(i);
+        }, { passive: true }); // Use passive option for better performance on scrollable elements
     });
 });
 
 portfolioCloseBtns.forEach((portfolioCloseBtn) => {
-    portfolioCloseBtn.addEventListener("click", () => {
-        portfolioModals.forEach((portfolioModalView) => {
-            portfolioModalView.classList.remove("active");
-        });
+    // Add both click and touchstart event listeners
+    ["click", "touchstart"].forEach(event => {
+        portfolioCloseBtn.addEventListener(event, () => {
+            portfolioModals.forEach((portfolioModalView) => {
+                portfolioModalView.classList.remove("active");
+            });
+        }, { passive: true }); // Use passive option for better performance on scrollable elements
     });
 });
-
 
 
 
