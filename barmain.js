@@ -1,66 +1,16 @@
-//Javascript for tab navigation horizontal scroll buttons
-const btnLeft = document.querySelector(".left-btn");
-const btnRight = document.querySelector(".right-btn");
-const tabMenu = document.querySelector(".tab-menu");
-
-const IconVisibility = () => {
-    let scrollLeftValue = Math.ceil(tabMenu.scrollLeft);
-    //console.log("1.", scrollLeftValue);
-    let scrollableWidth = tabMenu.scrollWidth - tabMenu.clientWidth;
-    //console.log("2.", scrollableWidth);
-
-    btnLeft.style.display = scrollLeftValue > 0 ? "block" : "none";
-    btnRight.style.display = scrollableWidth > scrollLeftValue ? "block" : "none";
+// function to handle bottom navigation bar's click motion
+const list = document.querySelectorAll('.list');
+function activeLink(){
+    list.forEach((item) =>
+    item.classList.remove('active'));
+    this.classList.add('active');
 }
-
-btnRight.addEventListener("click", () => {
-    tabMenu.scrollLeft += 150;
-    //IconVisibility();
-    setTimeout(() => IconVisibility(), 50);
-});
-
-btnLeft.addEventListener("click", () => {
-    tabMenu.scrollLeft -= 150;
-    //IconVisibility();
-    setTimeout(() => IconVisibility(), 50);
-});
-
-window.onload = function(){
-    btnRight.style.display = tabMenu.scrollWidth > tabMenu.clientWidth || tabMenu.scrollWidth >= window.innerWidth ? "block" : "none";
-    btnLeft.style.display = tabMenu.scrollWidth >= window.innerWidth ? "" : "none";
-}
-
-window.onresize = function(){
-    btnRight.style.display = tabMenu.scrollWidth > tabMenu.clientWidth || tabMenu.scrollWidth >= window.innerWidth ? "block" : "none";
-    btnLeft.style.display = tabMenu.scrollWidth >= window.innerWidth ? "" : "none";
-
-    let scrollLeftValue = Math.round(tabMenu.scrollLeft);
-
-    btnLeft.style.display = scrollLeftValue > 0 ? "block" : "none";
-}
-
-//Javascript to make the tab navigation draggable
-let activeDrag = false;
-
-tabMenu.addEventListener("mousemove", (drag) => {
-    if(!activeDrag) return;
-    tabMenu.scrollLeft -= drag.movementX;
-    IconVisibility();
-    tabMenu.classList.add("dragging");
-});
-
-document.addEventListener("mouseup", () => {
-    activeDrag = false;
-    tabMenu.classList.remove("dragging");
-});
-
-tabMenu.addEventListener("mousedown", () => {
-    activeDrag = true;
-});
+list.forEach((item) =>
+item.addEventListener('click', activeLink))
 
 //Javascript to view tab contents on click tab buttons
 const tabs = document.querySelectorAll(".tab");
-const tabBtns = document.querySelectorAll(".tab-btn");
+const tabBtns = document.querySelectorAll(".list");
 
 const tab_Nav = function(tabBtnClick){
     tabBtns.forEach((tabBtn) => {
@@ -80,33 +30,3 @@ tabBtns.forEach((tabBtn, i) => {
         tab_Nav(i);
     });
 });
-
-//Portfolio section - Modal
-const portfolioModals = document.querySelectorAll(".porfolio-model");
-const imgCards = document.querySelectorAll(".img-card");
-const portfolioCloseBtns = document.querySelectorAll(".portfolio-close-btn");
-
-var portfolioModal = function (modalClick) {
-    portfolioModals[modalClick].classList.add("active");
-}
-
-// Function to handle both click and touchstart events
-var addEventListeners = function(element, callback) {
-    element.addEventListener("click", callback);
-    element.addEventListener("touchend", callback);
-};
-
-imgCards.forEach((imgCard, i) => {
-    addEventListeners(imgCard, () => {
-        portfolioModal(i);
-    });
-});
-
-portfolioCloseBtns.forEach((portfolioCloseBtn) => {
-    addEventListeners(portfolioCloseBtn, () => {
-        portfolioModals.forEach((portfolioModalView) => {
-            portfolioModalView.classList.remove("active");
-        });
-    });
-});
-

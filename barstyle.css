@@ -11,6 +11,11 @@
     --text-shadow: 0 5px 25px rgb(2, 2, 2, 0.1);
     --modal-bg-color: #fff;
     --transparent-color-01: rgba(0, 0, 0, 0.1);
+
+    --clr: #222327;
+    --nav-bar-color: #fff;
+    --indicator-color: #b07c4c
+
 }
 
 /*======= Main CSS =======*/
@@ -35,96 +40,134 @@ section{
     position: relative;
 }
 
-/*======= Tab navigation bar =======*/
-.tab-nav-bar{
+/*======= Navigation =======*/
+.navigation-bar{
     position: fixed;
-    bottom: 5%; /* Align to the bottom */
+    bottom: 2%; /* Align to the bottom */
     left: 0; /* Align to the left edge */
     right: 0; /* Align to the right edge */
     margin: 0 auto; /* Center the navigation bar horizontally */
     z-index: 999; /* Ensure it's above other content */
 }
 
-.tab-navigation{
+.navigation{
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: fit-content;
+    max-width: 90%;
     margin: 0 auto;
-}
-
-
-.tab-menu{
-    color: var(--text-color);
-    list-style: none;
-    background: var(--third-color);
-    max-width: 800px;
-    padding: 10px;
-    white-space: nowrap;
-    border-bottom: 1px solid var(--third-color);
+    width: 400px;
+    height: 70px;
+    background: var(--nav-bar-color);
+    display: flex;
     border-radius: 50px;
-    box-shadow: var(--box-shadow);
-    overflow-x: auto;
-    user-select: none;
-    scroll-behavior: smooth;
 }
 
-.tab-menu.dragging{
-    scroll-behavior: unset;
-    cursor: grab;
+.navigation ul{
+    display: flex;
+    width: 350px;
 }
 
-.tab-menu::-webkit-scrollbar{
-    display: none;
+.navigation ul li{
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
 }
 
-.tab-btn{
-    color: var(--text-color);
-    display: inline-block;
-    font-size: 1em;
-    font-weight: 400;
-    margin: 0 2px;
-    padding: 10px 20px;
-    border-radius: 30px;
-    cursor: pointer;
-    user-select: none;
-    transition: 0.3s ease;
+.navigation ul li a{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
 }
 
-.tab-menu.dragging .tab-btn{
-    pointer-events: none;
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    transition: 0.5s;
+    color: var(--modal-bg-color);
 }
 
-.tab-btn:hover{
-    background: var(--first-color);
+.navigation ul li.active a .icon{
+    transform: translateY(-33px);
 }
 
-.tab-btn.active{
-    background: var(--second-color);
-}
-
-.left-btn, .right-btn{
+.navigation ul li a .text{
     position: absolute;
-    color: var(--text-color);
-    font-size: 1.8em;
-    padding: 10px;
-    cursor: pointer;
+    color: var(--clr);
+    font-weight: 400;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
 }
 
-.left-btn{
-    left: 0;
-    background: linear-gradient(to left, transparent, var(--first-color) 80%);
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    display: none;
+.navigation ul li.active a .text{
+    opacity: 1;
+    transform: translateY(10px);
 }
 
-.right-btn{
-    right: 0;
-    background: linear-gradient(to right, transparent, var(--first-color) 80%);
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
+.indicator{
+    position: absolute;
+    top: -50%;
+    width: 70px;
+    height: 70px;
+    background: var(--indicator-color);
+    border-radius: 50%;
+    border: 6px solid var(--first-color); 
+    transition: 0.5s;
 }
+
+.indicator::before{
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -18px;
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border-top-right-radius: 15px;
+    box-shadow: 0px -6px 0 0 var(--first-color);
+}
+
+.indicator::after{
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -18px;
+    width: 15px;
+    height: 15px;
+    background: transparent;
+    border-top-left-radius: 15px;
+    box-shadow: 0px -6px 0 0 var(--first-color);
+}
+
+.navigation ul li:nth-child(1).active ~ .indicator{
+    transform: translateX(calc(70px * 0));
+}
+.navigation ul li:nth-child(2).active ~ .indicator{
+    transform: translateX(calc(70px * 1));
+}
+.navigation ul li:nth-child(3).active ~ .indicator{
+    transform: translateX(calc(70px * 2));
+}
+.navigation ul li:nth-child(4).active ~ .indicator{
+    transform: translateX(calc(70px * 3));
+}
+.navigation ul li:nth-child(5).active ~ .indicator{
+    transform: translateX(calc(70px * 4));
+}
+
 
 /*======= Tab content =======*/
 .tab-content{
@@ -153,131 +196,6 @@ section{
     opacity: 1;
     transition: 1s ease;
 }
-
-/*=======Portfolio section=======*/
-.portfolio .container .content{
-  width: 100%;
-}
-
-.portfolio-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Adjusted for 2 items per row */
-    gap: 35px;
-    margin: 0 auto;
-    padding: 0 10px; /* Add some padding if needed for spacing from the viewport edges */
-}
-
-
-.portfolio-list .img-card{
-    position: relative;
-    max-width: 90%;
-    height: 180px;
-    border-radius: 20px;
-    box-shadow: var(--box-shadow);
-    overflow: hidden;
-    cursor: pointer;
-  }
-
-.portfolio-list .img-card .overlay{
-  transition: 1s ease;
-}
-
-.portfolio-list .img-card:hover .overlay{
-    z-index: 777;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.portfolio-list .img-card .info{
-  z-index: 777;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin: 20px;
-  color: #fff;
-  transform: translateY(20px);
-  opacity: 0;
-  transition: .5s ease;
-}
-
-.portfolio-list .img-card:hover .info{
-  transform: translateY(0);
-  opacity: 1;
-}
-
-.portfolio-list .img-card .info h3{
-    font-size: 0.75em;
-}
-  
-.portfolio-list .img-card .info span{
-    font-size: 0.65em;
-}
-  
-.portfolio-list .img-card img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-  
-.porfolio-model{
-    z-index: 999999;
-    position: fixed;
-    width: 100%;
-    height: 100vh;  /* change this to modify blurred height */
-    top: 0;
-    left: 0;
-    background: var(--transparent-color-01);
-    backdrop-filter: blur(20px);
-    visibility: hidden;
-    opacity: 0;
-    transition: .3s ease;
-    display: flex; /* Enables flexbox for its children */
-    align-items: center; /* Centers children vertically */
-    justify-content: center; /* Centers children horizontally */
-  }
-  
-.porfolio-model.active{
-    visibility: visible;
-    opacity: 1;
-}
-  
-.portfolio-model-body{
-    position: relative;
-    background: var(--modal-bg-color);
-    max-width: 600px;
-    width: 90%; /* Responsive width */
-    margin: auto; /* Helps with centering */
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: var(--box-shadow);
-    transform: translateY(50px);
-    transition: .5s ease;
-}
-  
-.porfolio-model.active .portfolio-model-body{
-    transform: translateY(0);
-}
-  
-.portfolio-close-btn{
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 20px;
-    cursor: pointer;
-}
-  
-.portfolio-model-body h3{
-    font-size: 1.5em;
-}
-  
-.portfolio-model-body img{
-    width: 100%;
-    margin: 20px 0;
-    border-radius: 10px;
-}
-
 
 .country{
     color: var(--third-color);
