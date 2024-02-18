@@ -90,25 +90,23 @@ var portfolioModal = function (modalClick) {
     portfolioModals[modalClick].classList.add("active");
 }
 
+// Function to handle both click and touchstart events
+var addEventListeners = function(element, callback) {
+    element.addEventListener("click", callback);
+    element.addEventListener("touchstart", callback);
+};
+
 imgCards.forEach((imgCard, i) => {
-    // Add both click and touchstart event listeners
-    ["click", "touchstart"].forEach(event => {
-        imgCard.addEventListener(event, () => {
-            portfolioModal(i);
-        }, { passive: true }); // Use passive option for better performance on scrollable elements
+    addEventListeners(imgCard, () => {
+        portfolioModal(i);
     });
 });
 
 portfolioCloseBtns.forEach((portfolioCloseBtn) => {
-    // Add both click and touchstart event listeners
-    ["click", "touchstart"].forEach(event => {
-        portfolioCloseBtn.addEventListener(event, () => {
-            portfolioModals.forEach((portfolioModalView) => {
-                portfolioModalView.classList.remove("active");
-            });
-        }, { passive: true }); // Use passive option for better performance on scrollable elements
+    addEventListeners(portfolioCloseBtn, () => {
+        portfolioModals.forEach((portfolioModalView) => {
+            portfolioModalView.classList.remove("active");
+        });
     });
 });
-
-
 
