@@ -2,13 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
-    --first-color: #000000;
+    --first-color: #fff;
     --second-color:#8d7b4b;
     --third-color: #5e391b;
     --text-color: #fff;
 
     --box-shadow: 0 5px 25px rgb(2, 2, 2, 0.1);
     --text-shadow: 0 5px 25px rgb(2, 2, 2, 0.1);
+    --modal-bg-color: #fff;
+    --transparent-color-01: rgba(0, 0, 0, 0.1);
 }
 
 /*======= Main CSS =======*/
@@ -152,43 +154,126 @@ section{
     transition: 1s ease;
 }
 
-.tab .row{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 50px 0;
-    gap: 30px;
+/*=======Portfolio section=======*/
+.portfolio .container .content{
+  width: 100%;
 }
 
-.tab .img-card{
+.portfolio-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Adjusted for 2 items per row */
+    gap: 35px;
+    margin: 0 auto;
+    padding: 0 10px; /* Add some padding if needed for spacing from the viewport edges */
+}
+
+
+.portfolio-list .img-card{
     position: relative;
-    width: 450px;
-    max-width: 450px;
+    max-width: 90%;
+    height: 180px;
     border-radius: 20px;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: var(--box-shadow);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+.portfolio-list .img-card .overlay{
+  transition: 1s ease;
 }
 
-.tab .img-card img{
+.portfolio-list .img-card:hover .overlay{
+    z-index: 777;
+    position: absolute;
     width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
 }
 
-.right-column{
-    max-width: 800px;
+.portfolio-list .img-card .info{
+  z-index: 777;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 20px;
+  color: #fff;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: .5s ease;
 }
 
-.info .city, .info .description p{
-    color: var(--text-color);
-    margin-bottom: 10px;
+.portfolio-list .img-card:hover .info{
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.info .city{
-    font-size: 2em;
+.portfolio-list .img-card .info h3{
+    font-size: 0.75em;
 }
+  
+.portfolio-list .img-card .info span{
+    font-size: 0.65em;
+}
+  
+.portfolio-list .img-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.porfolio-model{
+    z-index: 999999;
+    position: fixed;
+    width: 100%;
+    height: 300vh;  /* change this to modify blurred height */
+    top: 0;
+    left: 0;
+    background: var(--transparent-color-01);
+    backdrop-filter: blur(20px);
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease;
+  }
+  
+.porfolio-model.active{
+    visibility: visible;
+    opacity: 1;
+}
+  
+.portfolio-model-body{
+    position: relative;
+    background: var(--modal-bg-color);
+    max-width: 600px;
+    margin: 20px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    transform: translateY(-50px);
+    transition: .5s ease;
+}
+  
+.porfolio-model.active .portfolio-model-body{
+    transform: translateY(0);
+}
+  
+.portfolio-close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    cursor: pointer;
+}
+  
+.portfolio-model-body h3{
+    font-size: 1.5em;
+}
+  
+.portfolio-model-body img{
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
 
 .country{
     color: var(--third-color);
@@ -197,6 +282,13 @@ section{
     text-align: center;
     text-shadow: var(--text-shadow);
 }
+
+
+
+
+
+
+
 
 /*======= Media queries (max-width: 1050px) =======*/
 @media screen and (max-width: 1050px){
