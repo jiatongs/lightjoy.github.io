@@ -205,11 +205,97 @@ section{
     text-shadow: var(--text-shadow);
 }
 
+/*======= Cocktail Menu Portfolio Section =======*/
+.portfolio .container .content{
+    width: 100%;
+    top: 0px;
+  }
+  
+.portfolio-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    max-width: 100%;
+    gap: 10px;
+    margin: 20 auto;
+}
 
+.portfolio-list .img-card{
+    position: relative;
+    width: 100%; /* Ensure the card takes the full width of its grid column */
+    height: 40vh; /* Set a fixed height or adjust as per your design */
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    cursor: pointer;
+}
+  
+.portfolio-list .img-card img {
+    width: 100%; /* Image will take up the full width of the .img-card */
+    height: 100%; /* Image will take up the full height of the .img-card */
+    object-fit: cover; /* Ensures the image covers the card, cropping if necessary */
+    display: block;
+}
 
+.porfolio-model{
+    z-index: 999999;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: var(--transparent-color-01);
+    backdrop-filter: blur(20px);
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s ease;
+  }
+  
+  .porfolio-model.active{
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .portfolio-model-body{
+    position: relative;
+    background: var(--modal-bg-color);
+    max-width: 600px;
+    margin: 20px;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    transform: translateY(-50px);
+    transition: .5s ease;
+  }
 
+  .porfolio-model.active .portfolio-model-body{
+    transform: translateY(0);
+  }
+  
+  .portfolio-close-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 20px;
+    cursor: pointer;
+  }
+  
+  .portfolio-model-body h3{
+    font-size: 1.5em;
+  }
+  
+  .portfolio-model-body img{
+    width: 100%;
+    margin: 20px 0;
+    border-radius: 10px;
+  }
 
-
+  .portfolio-model-body ul {
+    list-style: none;
+  }
+  .portfolio-model-body ul li:before {
+    content: '-';  
+    padding-right: 5px;
+  }
 
 
 /*======= Media queries (max-width: 1050px) =======*/
