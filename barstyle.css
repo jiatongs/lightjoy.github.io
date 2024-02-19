@@ -330,7 +330,6 @@ section{
     transition: .3s ease;
   }
 
-
   
   .porfolio-model.active{
     visibility: visible;
@@ -350,7 +349,7 @@ section{
   }
 
   .porfolio-model.active .portfolio-model-body{
-    transform: translateY(50vh);
+    transform: translateY(30vh);
   }
   
   .portfolio-close-btn{
