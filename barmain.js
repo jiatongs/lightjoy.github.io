@@ -46,13 +46,13 @@ var portfolioModal = function (modalClick) {
 }
 
 imgCards.forEach((imgCard, i) => {
-    imgCard.addEventListener("click", () => {
+    imgCard.addEventListener("touchstart", () => {
         portfolioModal(i);
     });
 });
 
 portfolioCloseBtns.forEach((portfolioCloseBtn) => {
-    portfolioCloseBtn.addEventListener("click", () => {
+    portfolioCloseBtn.addEventListener("touchstart", () => {
         portfolioModals.forEach((portfolioModalView) => {
             portfolioModalView.classList.remove("active");
         });
