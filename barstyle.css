@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root{
-    --first-color: #000000;
+    --first-color: #241407;
     --second-color:#8d7b4b;
     --third-color: #5e391b;
     --text-color: #fff;
@@ -17,6 +17,60 @@
     --indicator-color: #b07c4c;
     --border-color:#573519;
 }
+
+header{
+    z-index: 999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 200px;
+    transition: 0.5s ease;
+  }
+
+
+  header .brand{
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-family: "Italiana", sans-serif;
+  }
+  
+  header .navigate{
+    position: relative;
+  }
+  
+  header .navigate .navigate-items a{
+    position: relative;
+    color: #fff;
+    font-size: 1em;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 30px;
+    transition: 0.3s ease;
+  }
+  
+  header .navigate .navigate-items a:before{
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    transition: 0.3s ease;
+  }
+  
+  header .navigate .navigate-items a:hover:before{
+    width: 100%;
+  }
+
+
 
 /*======= Main CSS =======*/
 *{
@@ -217,7 +271,7 @@ section{
     grid-template-columns: repeat(2, 1fr); 
     max-width: 100%;
     gap: 15px;
-    margin: 20 auto;
+    padding: 5vh 0 12vh 0;
 }
 
 .portfolio-list .img-card{
@@ -228,6 +282,29 @@ section{
     box-shadow: var(--box-shadow);
     overflow: hidden;
     cursor: pointer;
+}
+
+
+.portfolio-list .text-card{
+    position: relative;
+    width: 100%; /* Ensure the card takes the full width of its grid column */
+    height: auto; /* Set a fixed height or adjust as per your design */
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    cursor: pointer;
+}
+.portfolio-list .text-card h2{
+    color: var(--modal-bg-color);
+    font-size: 1.2 em;
+    font-family: "Italiana", sans-serif;
+    font-weight: bolder;
+}
+.portfolio-list .text-card p{
+    color: var(--second-color);
+    font: 0.9em sans-serif;
+    font-weight: 300;
 }
   
 .portfolio-list .img-card img {
@@ -244,12 +321,14 @@ section{
     height: 200vh;
     top: 0;
     left: 0;
+    bottom: 15vh;
     background: var(--transparent-color-01);
     backdrop-filter: blur(20px);
     visibility: hidden;
     opacity: 0;
     transition: .3s ease;
   }
+
   
   .porfolio-model.active{
     visibility: visible;
@@ -260,16 +339,16 @@ section{
     position: relative;
     background: var(--modal-bg-color);
     max-width: 600px;
-    margin: 20px;
+    margin: 40px;
     padding: 40px;
-    border-radius: 10px;
+    border-radius: 20px;
     box-shadow: var(--box-shadow);
     transform: translateY(-50px);
     transition: .5s ease;
   }
 
   .porfolio-model.active .portfolio-model-body{
-    transform: translateY(0);
+    transform: translateY(50vh);
   }
   
   .portfolio-close-btn{
@@ -282,6 +361,10 @@ section{
   
   .portfolio-model-body h3{
     font-size: 1.5em;
+  }
+
+  .portfolio-model-body p{
+    margin-bottom: 20px;
   }
   
   .portfolio-model-body img{
@@ -334,4 +417,87 @@ section{
         font-size: 12vw;
         padding-bottom: 50px;
     }
+
+
+
+
+
+
+
+
+
+header{
+    padding: 12px 20px;
+  }
+
+
+
+  .home .media-icons{
+    right: 15px;
+  }
+
+  header .navigate{
+    display: none;
+  }
+
+  header .navigate.active{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(1, 1, 1, 0.5);
+  }
+
+  header .navigate .navigate-items a{
+    color: #222;
+    font-size: 1.2em;
+    margin: 20px;
+  }
+
+  header .navigate .navigate-items a:before{
+    background: #222;
+    height: 5px;
+  }
+
+  header .navigate.active .navigate-items{
+    background: var(--nav-bar-color);
+    width: 600px;
+    max-width: 600px;
+    margin: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 50px;
+    box-shadow: 0 5px 25px rgb(1 1 1 / 20%);
+  }
+
+  .menu-btn{
+    background: url(menu.png)no-repeat;
+    background-size: 30px;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+
+  .menu-btn.active {
+    position: absolute; /* or 'fixed' if you want it fixed relative to the viewport */
+    top: 0; /* Adjust as needed */
+    right: 0; /* Adjust as needed */
+    z-index: 999;
+    background: url(close.png) no-repeat;
+    background-size: 21px;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
 }
