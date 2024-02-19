@@ -195,6 +195,7 @@ section{
     content-visibility: visible;
     opacity: 1;
     transition: 1s ease;
+    z-index: 1;
 }
 
 .country{
