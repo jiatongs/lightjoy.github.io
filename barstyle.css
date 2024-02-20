@@ -271,7 +271,7 @@ section{
     grid-template-columns: repeat(2, 1fr); 
     max-width: 100%;
     gap: 15px;
-    padding: 5vh 0 12vh 0;
+    padding: 7.5vh 0 12vh 0;
 }
 
 .portfolio-list .img-card{
