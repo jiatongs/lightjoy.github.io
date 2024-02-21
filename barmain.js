@@ -8,6 +8,9 @@ function activeLink(){
 list.forEach((item) =>
 item.addEventListener('click', activeLink))
 
+
+
+
 //Javascript to view tab contents on click tab buttons
 const tabs = document.querySelectorAll(".tab");
 const tabBtns = document.querySelectorAll(".list");
@@ -30,8 +33,6 @@ tabBtns.forEach((tabBtn, i) => {
         tab_Nav(i);
     });
 });
-
-
 
 
 
