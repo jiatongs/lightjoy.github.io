@@ -151,13 +151,13 @@ section{
 }
 
 .btn{
-  background: var(--second-color);
+  background: var(--indicator-color);
   color: #fff;
   font-size: 1.2em;
   font-weight: 500;
   display: inline-block;
   margin-top: 25px;
-  padding: 20px 30px;
+  padding: 15px 30px;
   letter-spacing: 1px;
   border-radius: 30px;
   text-decoration: none;
@@ -488,6 +488,81 @@ section{
     padding-right: 5px;
   }
 
+  /*=======Footer=======*/
+footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: var(--first-color);
+  width: 100%;
+  margin-top: 50px;
+  padding: 3rem 2rem;
+  color: #fff;
+}
+
+footer a{
+  color: #fff;
+}
+
+.footer-container{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.footer-container .about h2{
+  font-size: 3em;
+  font-weight: 600;
+  background: linear-gradient(to top, transparent 0%, #fff 50%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: .8;
+  
+}
+
+.footer-container .about p{
+  font-size: var(--normal-font-size);
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.footer-container .info,
+.footer-container .follow{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer-container .info h3,
+.footer-container .follow h3{
+  font-size: 1.1em;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.footer-container .info ul,
+.footer-container .follow ul{
+  display: flex;
+  list-style: none;
+  text-decoration: none;
+}
+
+.footer-container .info a{
+  margin: 20px;
+}
+
+.footer-container .follow a{
+  font-size: 1.5em;
+  margin: 20px;
+}
+
+.footer-copyright p{
+  font-size: var(--normal-font-size);
+  font-weight: 300;
+  margin-top: 50px;
+}
 
 /*======= Media queries (max-width: 1050px) =======*/
 @media screen and (max-width: 1200px){
@@ -647,3 +722,38 @@ header{
   margin-bottom: 0px;
   transform: translateX(-30px);
 }
+
+
+
+  /*=======Footer=======*/
+  footer .footer-container{
+    flex-direction: column;
+  }
+
+  .footer-container .about, .footer-container .info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+  }
+
+  .footer-container .info ul{
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .footer-container .info ul li{
+    margin: 5px 0;
+  }
+
+  .footer-container .hr{
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 10px 0 22px;
+  }
+
+  .footer-copyright {
+    margin-bottom: 10vh;
+  }
